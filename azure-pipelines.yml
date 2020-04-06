@@ -17,3 +17,44 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: InvokeRESTAPI@1
+  inputs:
+    connectionType: 'connectedServiceName'
+    method: 'POST'
+    headers: |
+      {
+      "Content-Type":"application/json", 
+      "Authorization": "Api-token $(dt_api_token)"
+      }
+    body: |
+      '{
+                  "eventType" : "CUSTOM_DEPLOYMENT",
+                  "attachRules" : {
+                    "tagRule" : [{
+                        "meTypes" : ["SERVICE"],
+                        "tags" : [ {
+                          "context" : "CONTEXTLESS",
+                          "key" : "app",
+                          "value" : "$(dt_app)"           
+                        }, {
+                          "context" : "CONTEXTLESS",
+                          "key" : "environment",
+                          "value" : ""$(dt_env)"" 
+                        }
+                        ]
+                      }]
+                  },
+                  "source" : "Azure DevOps Pipelines",
+                  "deploymentName" : "$(pipeline_name)",
+                  "deploymentVersion" : "$(service_version)",
+                  "deploymentProject" : "$(project_name)"
+                  "ciBackLink" : "$(pipeline_url)",
+                  "customProperties": {
+                    "service": "$(dt_app)",
+                    "image" : "$(dt_image)",
+                    "tag" : "$(service_version)",
+                    "environment" : "$(dt_env)"
+                  }
+                }'
+    urlSuffix: '/api/v1/events'
+    waitForCompletion: 'false'
