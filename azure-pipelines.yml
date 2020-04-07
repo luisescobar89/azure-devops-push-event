@@ -9,16 +9,20 @@ steps:
     dynatraceApiToken: '$(dynatraceApiToken)'
     tagRule: |
       [{
-          "context" : "CONTEXTLESS",
-          "key" : "app",
-          "value" : "$(dt_app)"           
-        }, {
-          "context" : "CONTEXTLESS",
-          "key" : "environment",
-          "value" : "$(dt_env)"
+        "meTypes": "SERVICE",
+        "tags": [{
+           "context": "CONTEXTLESS",
+           "key": "app",
+           "value": "$(dt_app)"
+        },
+      {
+           "context": "CONTEXTLESS",
+           "key": "env",
+           "value": "$(dt_env)"
         }]
       }]
     deploymentName: 'Deployment: Azure DevOps: $(Release.DefinitionName)'
     deploymentVersion: 'Azure DevOps Release: $(Release.ReleaseName)'
     remediationAction: 'ansible'
     source: 'DevOps Pipeline'
+
