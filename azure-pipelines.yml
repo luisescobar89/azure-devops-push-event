@@ -23,6 +23,13 @@ steps:
     method: 'POST'
     headers: |
       {
+- task: InvokeRESTAPI@1
+  inputs:
+    connectionType: 'connectedServiceName'
+    serviceConnection: 'jwl50038'
+    method: 'POST'
+    headers: |
+      {
       "Content-Type":"application/json", 
       "Authorization": "Api-token $(dt_api_token)"
       }
