@@ -20,7 +20,7 @@ steps:
       "Authorization": "Api-token $(dynatraceApiToken)"
       }
     body: |
-      '{
+      {
             "eventType" : "CUSTOM_DEPLOYMENT",
             "attachRules" : {
               "tagRule" : [{
@@ -48,7 +48,7 @@ steps:
               "tag" : "1.9.0-RELEASE-27",
               "environment" : "XIS"
             }
-          }'
+          }
     urlSuffix: 'api/v1/events'
     waitForCompletion: 'false'
 
