@@ -1,5 +1,5 @@
 trigger:
-- master
+- dt_extension
 
 pool: server
 
