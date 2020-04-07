@@ -6,12 +6,7 @@
 trigger:
 - master
 
-- task: InvokeRESTAPI@1
-  inputs:
-    connectionType: 'connectedServiceName'
-    method: 'POST'
-    headers: |
-      {
+steps:
 - task: InvokeRESTAPI@1
   inputs:
     connectionType: 'connectedServiceName'
