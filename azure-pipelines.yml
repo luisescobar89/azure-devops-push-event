@@ -1,8 +1,6 @@
 trigger:
 - dt_extension
 
-pool: server
-
 steps:
 - task: pushEventTask@1
   inputs:
