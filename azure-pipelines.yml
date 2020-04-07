@@ -17,7 +17,7 @@ steps:
     headers: |
       {
       "Content-Type":"application/json", 
-      "Authorization": "Api-token $(dt_api_token)"
+      "Authorization": "Api-token $(dynatraceApiToken)"
       }
     body: |
       '{
