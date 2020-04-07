@@ -21,34 +21,32 @@ steps:
       }
     body: |
       {
-            "eventType" : "CUSTOM_DEPLOYMENT",
-            "attachRules" : {
-              "tagRule" : [{
-                  "meTypes" : ["SERVICE"],
-                  "tags" : [ {
-                    "context" : "CONTEXTLESS",
-                    "key" : "app",
-                    "value" : "carts"            
-                  }, {
-                    "context" : "CONTEXTLESS",
-                    "key" : "environment",
-                    "value" : "staging" 
+                  "eventType" : "CUSTOM_DEPLOYMENT",
+                  "attachRules" : {
+                    "tagRule" : [{
+                        "meTypes" : ["SERVICE"],
+                        "tags" : [{
+                          "context" : "CONTEXTLESS",
+                          "key" : "app",
+                          "value" : "$(dt_app)"           
+                        }, {
+                          "context" : "CONTEXTLESS",
+                          "key" : "environment",
+                          "value" : "$(dt_env)"
+                        }]
+                      }]
+                  },
+                  "source" : "Azure DevOps Pipelines",
+                  "deploymentName" : "$(Release.DefinitionName)",
+                  "deploymentVersion" : "$(Release.ReleaseName)",
+                  "deploymentProject" : "$(System.TeamProject)",
+                  "ciBackLink" : "$(Release.ReleaseWebURL)",
+                  "customProperties": {
+                    "service": "$(dt_app)",
+                    "image" : "$(dt_image)",
+                    "tag" : "$(Release.ReleaseName)",
+                    "environment" : "$(dt_env)"
                   }
-                  ]
-                }]
-            },
-            "source" : "Ansible Tower",
-            "deploymentName" : "docker-swarm-deploy",
-            "deploymentVersion" : "1.9.0-RELEASE-27",
-            "deploymentProject" : "docker-swarm",
-            "ciBackLink" : "https://xx.xxx.xxx.xx/#/jobs/project/1",
-            "customProperties": {
-              "service": "oceannow",
-              "image" : "artifactory.xis.ocean.com/prod/oceannow:1.9.0-RELEASE-27",
-              "tag" : "1.9.0-RELEASE-27",
-              "environment" : "XIS"
-            }
-          }
+                }
     urlSuffix: 'api/v1/events'
     waitForCompletion: 'false'
-
