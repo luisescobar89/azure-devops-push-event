@@ -51,23 +51,3 @@ steps:
     urlSuffix: '/api/v1/events'
     waitForCompletion: 'false'
 
-- task: pushEventTask@1
-  inputs:
-    eventType: 'deployment'
-    dynatraceTenantUrl: '$(dynatraceTenantUrl)'
-    dynatraceApiToken: '$(dynatraceApiToken)'
-    tagRule: |
-      [{
-          "context" : "CONTEXTLESS",
-          "key" : "app",
-          "value" : "$(dt_app)"           
-        }, {
-          "context" : "CONTEXTLESS",
-          "key" : "environment",
-          "value" : "$(dt_env)"
-        }]
-      }]
-    deploymentName: 'Deployment: Azure DevOps: $(Release.DefinitionName)'
-    deploymentVersion: 'Azure DevOps Release: $(Release.ReleaseName)'
-    remediationAction: 'ansible'
-    source: 'DevOps Pipeline'
