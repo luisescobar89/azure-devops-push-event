@@ -39,7 +39,7 @@ steps:
                         }, {
                           "context" : "CONTEXTLESS",
                           "key" : "environment",
-                          "value" : ""$(dt_env)"" 
+                          "value" : "$(dt_env)"
                         }
                         ]
                       }]
