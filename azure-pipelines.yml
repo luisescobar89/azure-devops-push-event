@@ -37,14 +37,14 @@ steps:
                       }]
                   },
                   "source" : "Azure DevOps Pipelines",
-                  "deploymentName" : "$(pipeline_name)",
-                  "deploymentVersion" : "$(service_version)",
-                  "deploymentProject" : "$(project_name)"
-                  "ciBackLink" : "$(pipeline_url)",
+                  "deploymentName" : "$(Release.DefinitionName)",
+                  "deploymentVersion" : "$(Release.ReleaseName)",
+                  "deploymentProject" : "$(System.TeamProject)"
+                  "ciBackLink" : "$(Release.ReleaseWebURL)",
                   "customProperties": {
                     "service": "$(dt_app)",
                     "image" : "$(dt_image)",
-                    "tag" : "$(service_version)",
+                    "tag" : "$(Release.ReleaseName)",
                     "environment" : "$(dt_env)"
                   }
                 }'
