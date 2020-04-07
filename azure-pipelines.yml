@@ -48,6 +48,6 @@ steps:
                     "environment" : "$(dt_env)"
                   }
                 }'
-    urlSuffix: '/api/v1/events'
+    urlSuffix: 'api/v1/events'
     waitForCompletion: 'false'
 
