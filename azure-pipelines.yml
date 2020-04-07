@@ -17,7 +17,7 @@ steps:
         },
       {
            "context": "CONTEXTLESS",
-           "key": "env",
+           "key": "environment",
            "value": "$(dt_env)"
         }]
       }]
