@@ -20,33 +20,33 @@ steps:
       "Authorization": "Api-token $(dynatraceApiToken)"
       }
     body: |
-      {
-                  "eventType" : "CUSTOM_DEPLOYMENT",
-                  "attachRules" : {
-                    "tagRule" : [{
-                        "meTypes" : ["SERVICE"],
-                        "tags" : [{
-                          "context" : "CONTEXTLESS",
-                          "key" : "app",
-                          "value" : "$(dt_app)"           
-                        }, {
-                          "context" : "CONTEXTLESS",
-                          "key" : "environment",
-                          "value" : "$(dt_env)"
-                        }]
-                      }]
-                  },
-                  "source" : "Azure DevOps Pipelines",
-                  "deploymentName" : "$(Release.DefinitionName)",
-                  "deploymentVersion" : "$(Release.ReleaseName)",
-                  "deploymentProject" : "$(System.TeamProject)",
-                  "ciBackLink" : "$(Release.ReleaseWebURL)",
-                  "customProperties": {
-                    "service": "$(dt_app)",
-                    "image" : "$(dt_image)",
-                    "tag" : "$(Release.ReleaseName)",
-                    "environment" : "$(dt_env)"
-                  }
-                }
+        {
+          "eventType" : "CUSTOM_DEPLOYMENT",
+          "attachRules" : {
+            "tagRule" : [{
+                "meTypes" : ["SERVICE"],
+                "tags" : [{
+                  "context" : "CONTEXTLESS",
+                  "key" : "app",
+                  "value" : "$(dt_app)"           
+                }, {
+                  "context" : "CONTEXTLESS",
+                  "key" : "environment",
+                  "value" : "$(dt_env)"
+                }]
+              }]
+          },
+          "source" : "Azure DevOps Pipelines",
+          "deploymentName" : "$(Release.DefinitionName)",
+          "deploymentVersion" : "$(Release.ReleaseName)",
+          "deploymentProject" : "$(System.TeamProject)",
+          "ciBackLink" : "$(Release.ReleaseWebURL)",
+          "customProperties": {
+            "service": "$(dt_app)",
+            "image" : "$(dt_image)",
+            "tag" : "$(Release.ReleaseName)",
+            "environment" : "$(dt_env)"
+          }
+        }
     urlSuffix: 'api/v1/events'
     waitForCompletion: 'false'
