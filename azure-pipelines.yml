@@ -39,7 +39,7 @@ steps:
                   "source" : "Azure DevOps Pipelines",
                   "deploymentName" : "$(Release.DefinitionName)",
                   "deploymentVersion" : "$(Release.ReleaseName)",
-                  "deploymentProject" : "$(System.TeamProject)"
+                  "deploymentProject" : "$(System.TeamProject)",
                   "ciBackLink" : "$(Release.ReleaseWebURL)",
                   "customProperties": {
                     "service": "$(dt_app)",
