@@ -21,6 +21,16 @@ steps:
            "value": "$(dt_env)"
         }]
       }]
+    customProperties: |
+      {
+          "Deployment Start Time": "$(DeploymentEventStartTime)",
+          "Deployment End Time": "$(DeploymentEventEndTime)",
+          "Application": "$(Application)",
+          "Application Owner": "$(ApplicationOwner)",
+          "Release Reason": "$(Release.Reason)",
+          "Release Requested For": "$(Release.RequestedFor)",
+          "Release Description": "$(Release.ReleaseDescription)"
+      }
     deploymentName: 'Deployment: Azure DevOps: $(Release.DefinitionName)'
     deploymentVersion: 'Azure DevOps Release: $(Release.ReleaseName)'
     remediationAction: 'ansible'
